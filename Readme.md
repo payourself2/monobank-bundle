@@ -1,8 +1,4 @@
-
-
-[tokenRequestId] => aSaIhbrOUapnNlMX_Ngyqug 
-[acceptUrl] => https://mbnk.app/auth/aSaIhbrOUapnNlMX_Ngyqug
-docks
+docs
 
 https://api.monobank.ua/docs/
 
