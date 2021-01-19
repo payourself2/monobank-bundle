@@ -1,0 +1,2 @@
+parameters:
+    monobank_api_base_path: 'https://api.monobank.ua'

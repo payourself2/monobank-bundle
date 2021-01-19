@@ -1,0 +1,21 @@
+index:
+    path: /
+    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::index
+
+auth_check:
+    path: /auth/check
+    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::checkAuth
+
+auth:
+    path: /auth
+    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::auth
+
+client_info:
+    path: /client/info
+    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::clientInfo
+
+
+client_statement:
+    path: /client/statement
+    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::clientStatement
+
