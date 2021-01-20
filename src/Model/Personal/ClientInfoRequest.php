@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle\Models\Corporate;
+namespace Payourself2\Bundle\MonobankBundle\Model\Personal;
 
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
+use Payourself2\Bundle\MonobankBundle\Config\Headers;
 use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Nyholm\Psr7\MessageTrait;
 use Nyholm\Psr7\RequestTrait;
@@ -18,16 +19,13 @@ class ClientInfoRequest implements RequestInterface
 
     private const PATH = '/personal/client-info';
 
-    public function __construct(Signer $signer, string $basePath, string $requestId)
+    public function __construct(string $basePath, string $token)
     {
         $this->method = RequestMethod::GET;
         $this->uri = new Uri(sprintf('%s%s', $basePath, self::PATH));
         $time = time();
         $headers = [
-            'X-Key-Id' => $signer->getPublicKey(),
-            'X-Time' => $time,
-            'X-Request-Id' => $requestId,
-            'X-Sign' => $signer->sign((string)$time, $requestId, self::PATH),
+            Headers::TOKEN => $token
         ];
         $this->setHeaders($headers);
     }

@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle\Models\Corporate;
+namespace Payourself2\Bundle\MonobankBundle\Model\Personal;
 
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
+use Payourself2\Bundle\MonobankBundle\Config\Headers;
 use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Nyholm\Psr7\MessageTrait;
 use Nyholm\Psr7\RequestTrait;
@@ -20,9 +21,8 @@ class ClientStatementRequest implements RequestInterface
     private const ADDITIONAL_PATH = '/{to}';
 
     public function __construct(
-        Signer $signer,
         string $basePath,
-        string $requestId,
+        string $token,
         string $accountId,
         int $from,
         ?int $to
@@ -37,10 +37,7 @@ class ClientStatementRequest implements RequestInterface
 
         $time = time();
         $headers = [
-            'X-Key-Id' => $signer->getPublicKey(),
-            'X-Time' => $time,
-            'X-Request-Id' => $requestId,
-            'X-Sign' => $signer->sign((string)$time, $requestId, $this->uri->getPath()),
+            Headers::TOKEN => $token,
         ];
         $this->setHeaders($headers);
     }

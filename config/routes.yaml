@@ -1,21 +1,40 @@
-index:
-    path: /
-    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::index
+c_index:
+    path: /c
+    controller: Payourself2\Bundle\MonobankBundle\Controller\CorporateController::index
 
-auth_check:
-    path: /auth/check
-    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::checkAuth
+c_auth_check:
+    path: /c/auth/check
+    controller: Payourself2\Bundle\MonobankBundle\Controller\CorporateController::checkAuth
 
-auth:
-    path: /auth
-    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::auth
+c_auth:
+    path: /c/auth
+    controller: Payourself2\Bundle\MonobankBundle\Controller\CorporateController::auth
 
-client_info:
-    path: /client/info
-    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::clientInfo
+c_client_info:
+    path: /c/client/info
+    controller: Payourself2\Bundle\MonobankBundle\Controller\CorporateController::clientInfo
 
 
-client_statement:
-    path: /client/statement
-    controller: Payourself2\Bundle\MonobankBundle\Controller\ApiController::clientStatement
+c_client_statement:
+    path: /c/client/statement
+    controller: Payourself2\Bundle\MonobankBundle\Controller\CorporateController::clientStatement
+
+
+
+p_index:
+    path: /p
+    controller: Payourself2\Bundle\MonobankBundle\Controller\PersonalController::index
+
+p_client_info:
+    path: /p/client/info
+    controller: Payourself2\Bundle\MonobankBundle\Controller\PersonalController::clientInfo
+
+p_client_statement:
+    path: /p/client/statement
+    controller: Payourself2\Bundle\MonobankBundle\Controller\PersonalController::clientStatement
+
+
+p_client_webhook:
+    path: /p/webhook
+    controller: Payourself2\Bundle\MonobankBundle\Controller\PersonalController::webHook
 

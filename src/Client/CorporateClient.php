@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle;
+namespace Payourself2\Bundle\MonobankBundle\Client;
 
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
 use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
-use Payourself2\Bundle\MonobankBundle\Models\Corporate\AuthRequest;
-use Payourself2\Bundle\MonobankBundle\Models\Corporate\CheckAuthRequest;
-use Payourself2\Bundle\MonobankBundle\Models\Corporate\ClientInfoRequest;
-use Payourself2\Bundle\MonobankBundle\Models\Corporate\ClientStatementRequest;
-use Payourself2\Bundle\MonobankBundle\Models\Corporate\CurrencyRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Corporate\AuthRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Corporate\CheckAuthRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Corporate\ClientInfoRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Corporate\ClientStatementRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Corporate\CurrencyRequest;
 
 class CorporateClient
 {
@@ -19,26 +19,27 @@ class CorporateClient
     private Signer $signer;
 
     private string $monobankApiBasePath;
-    private     PublicClient $publicClient;
+
+    private GeneralClient $generalClient;
 
     public function __construct(
         SendRequestAdapterInterface $adapter,
         Signer $signer,
         string $monobankApiBasePath,
-        PublicClient $publicClient
+        GeneralClient $generalClient
     ) {
         $this->adapter = $adapter;
         $this->signer = $signer;
         $this->monobankApiBasePath = $monobankApiBasePath;
-        $this->publicClient = $publicClient;
+        $this->generalClient = $generalClient;
     }
 
     public function currency()
     {
-        return $this->publicClient->currency();
+        return $this->generalClient->currency();
     }
 
-    public function auth(string $permission = 'sp', string $callbackUrl = 'http://localhost:8080')
+    public function auth(string $permission, string $callbackUrl)
     {
         $request = new AuthRequest($this->signer, $this->monobankApiBasePath, $permission, $callbackUrl);
 

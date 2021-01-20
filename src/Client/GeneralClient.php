@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle;
+namespace Payourself2\Bundle\MonobankBundle\Client;
 
 use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
-use Payourself2\Bundle\MonobankBundle\Models\General\CurrencyRequest;
+use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyRequest;
 
-class PublicClient
+class GeneralClient
 {
     private SendRequestAdapterInterface $adapter;
 
