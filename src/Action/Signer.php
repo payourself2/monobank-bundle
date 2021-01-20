@@ -10,11 +10,10 @@ class Signer
 
     private string $privateKey;
 
-    public function __construct()
+    public function __construct(string $monobankApiPublicKey, string $monobankApiPrivateKey)
     {
-        /**  @TODO  change to params */
-        $this->publicKey = 'cc0eaee64ea73737075939c1e193d999c839ab81';
-        $this->privateKey = file_get_contents(__DIR__ . '/../../config/test_priv.key');
+        $this->publicKey = $monobankApiPublicKey;
+        $this->privateKey = $monobankApiPrivateKey;
     }
 
     public function getPublicKey(): string

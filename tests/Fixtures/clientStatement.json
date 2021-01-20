@@ -1,0 +1,72 @@
+[
+  {
+    "id": "frz3bUf3qDKPvK59",
+    "time": 1610567602,
+    "description": "Coffeelat",
+    "mcc": 5814,
+    "amount": -3800,
+    "operationAmount": -3800,
+    "currencyCode": 980,
+    "commissionRate": 0,
+    "cashbackAmount": 0,
+    "balance": 1851274,
+    "hold": false,
+    "receiptId": "TXTK-HTC1-9EEP-B336"
+  },
+  {
+    "id": "zIPBVYN1OjyvyEnU",
+    "time": 1610567399,
+    "description": "Ашан",
+    "mcc": 5499,
+    "amount": -42111,
+    "operationAmount": -42111,
+    "currencyCode": 980,
+    "commissionRate": 0,
+    "cashbackAmount": 842,
+    "balance": 1855074,
+    "hold": false,
+    "receiptId": "AH7T-AA98-5426-2AE5"
+  },
+  {
+    "id": "8M-KxNEBOnnB2RIf",
+    "time": 1610539656,
+    "description": "Ашан",
+    "mcc": 5499,
+    "amount": -30332,
+    "operationAmount": -30332,
+    "currencyCode": 980,
+    "commissionRate": 0,
+    "cashbackAmount": 606,
+    "balance": 1897274,
+    "hold": false,
+    "receiptId": "98X9-B000-4K5C-E1AT"
+  },
+  {
+    "id": "vu4yGCh1_vysxeGl",
+    "time": 1610469559,
+    "description": "на ревуцкого",
+    "mcc": 5499,
+    "amount": -4800,
+    "operationAmount": -4800,
+    "currencyCode": 980,
+    "commissionRate": 0,
+    "cashbackAmount": 96,
+    "balance": 1927674,
+    "hold": false,
+    "receiptId": "CBBB-XH2H-XBK5-B014"
+  },
+  {
+    "id": "SdV-yDXNXEAkoET5",
+    "time": 1610433646,
+    "description": "ЛотОК",
+    "mcc": 5499,
+    "amount": -6620,
+    "operationAmount": -6620,
+    "currencyCode": 980,
+    "commissionRate": 0,
+    "cashbackAmount": 132,
+    "balance": 1932474,
+    "hold": false,
+    "receiptId": "TEB0-M586-THA6-XH6T"
+  }
+]

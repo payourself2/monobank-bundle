@@ -1,0 +1,44 @@
+{
+  "clientId": "1SSXfuvmi5",
+  "name": "Андрій",
+  "webHookUrl": "",
+  "permissions": "sp",
+  "accounts": [
+    {
+      "id": "1SDZ7MGH3bqnItvAKFnjVw",
+      "currencyCode": 840,
+      "cashbackType": "UAH",
+      "balance": 0,
+      "creditLimit": 0,
+      "maskedPan": [
+        "537541******3788"
+      ],
+      "type": "black",
+      "iban": "UA503220010010026201304873834"
+    },
+    {
+      "id": "1SuSLmiRO1xZfjvPxIUCqg",
+      "currencyCode": 978,
+      "cashbackType": "UAH",
+      "balance": 1,
+      "creditLimit": 0,
+      "maskedPan": [
+        "537541******0524"
+      ],
+      "type": "black",
+      "iban": "UA093220010010026204306412308"
+    },
+    {
+      "id": "1SbxuvdJZHsx65OfWPKBJw",
+      "currencyCode": 980,
+      "cashbackType": "UAH",
+      "balance": 918998,
+      "creditLimit": 0,
+      "maskedPan": [
+        "537541******0884"
+      ],
+      "type": "black",
+      "iban": "UA263220010001026208301043789"
+    }
+  ]
+}
