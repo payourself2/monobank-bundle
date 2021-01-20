@@ -23,19 +23,11 @@ class Signer
 
     public function sign(string $time, string $param, string $url): string
     {
-
-        $key = openssl_get_privatekey($this->privateKey, "");
-        $str = $time.$param.$url;
-        openssl_sign($str, $sig, $key, OPENSSL_ALGO_SHA256);
-        openssl_free_key($key);
-        return base64_encode($sig);
-
-
         $key = openssl_pkey_get_private($this->privateKey, "");
 
         $str = $time . $param . $url;
         openssl_sign($str, $sig, $key, OPENSSL_ALGO_SHA256);
-        openssl_free_key($key);
+        openssl_pkey_free($key);
 
         return base64_encode($sig);
     }
