@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Model\General;
 
-use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Nyholm\Psr7\MessageTrait;
 use Nyholm\Psr7\RequestTrait;
 use Nyholm\Psr7\Uri;
+use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Psr\Http\Message\RequestInterface;
 
 class CurrencyRequest implements RequestInterface

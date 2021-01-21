@@ -6,8 +6,8 @@ namespace Payourself2\Bundle\MonobankBundle\Model\Personal;
 
 use Nyholm\Psr7\MessageTrait;
 use Nyholm\Psr7\RequestTrait;
-use Nyholm\Psr7\Uri;
 use Nyholm\Psr7\Stream;
+use Nyholm\Psr7\Uri;
 use Payourself2\Bundle\MonobankBundle\Config\Headers;
 use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Psr\Http\Message\RequestInterface;
@@ -23,12 +23,11 @@ class WebHookRequest implements RequestInterface
     {
         $this->method = RequestMethod::POST;
         $this->uri = new Uri(sprintf('%s%s', $basePath, self::PATH));
-        $time = time();
         $headers = [
             Headers::TOKEN => $token,
         ];
         $this->setHeaders($headers);
-        $body = '{"webHookUrl": "'.$webHookUrl.'"}';
+        $body = '{"webHookUrl": "' . $webHookUrl . '"}';
         $this->withBody(Stream::create($body));
     }
 }

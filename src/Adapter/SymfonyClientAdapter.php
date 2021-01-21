@@ -6,6 +6,7 @@ namespace Payourself2\Bundle\MonobankBundle\Adapter;
 
 use Psr\Http\Message\RequestInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
 
 use function count;
 
@@ -18,19 +19,17 @@ class SymfonyClientAdapter implements SendRequestAdapterInterface
         $this->client = $client;
     }
 
-    public function send(RequestInterface $request)
+    public function send(RequestInterface $request): ResponseInterface
     {
         $options = [];
         if (count($request->getHeaders()) > 0) {
             $options['headers'] = $request->getHeaders();
         }
 
-        $response = $this->client->request(
+        return $this->client->request(
             $request->getMethod(),
             (string)$request->getUri(),
             $options
         );
-
-        return $response->getContent()?? $response->getStatusCode();
     }
 }

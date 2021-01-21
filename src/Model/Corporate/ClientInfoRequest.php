@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Model\Corporate;
 
-use Payourself2\Bundle\MonobankBundle\Action\Signer;
-use Payourself2\Bundle\MonobankBundle\Config\Headers;
-use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Nyholm\Psr7\MessageTrait;
 use Nyholm\Psr7\RequestTrait;
 use Nyholm\Psr7\Uri;
+use Payourself2\Bundle\MonobankBundle\Action\Signer;
+use Payourself2\Bundle\MonobankBundle\Config\Headers;
+use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Psr\Http\Message\RequestInterface;
 
 class ClientInfoRequest implements RequestInterface

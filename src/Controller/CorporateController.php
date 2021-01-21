@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Controller;
 
-use Payourself2\Bundle\MonobankBundle\Action\Signer;
-use Payourself2\Bundle\MonobankBundle\Adapter\SymfonyClientAdapter;
 use Payourself2\Bundle\MonobankBundle\Client\CorporateClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +22,7 @@ class CorporateController
         $result = $this->corporateClient->currency();
 
         return new Response(
-            '<html><body>' . print_r($result) . '</body></html>'
+            '<html><body>' . print_r(iterator_to_array($result)) . '</body></html>'
         );
     }
 

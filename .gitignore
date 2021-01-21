@@ -9,3 +9,4 @@
 /vendor/
 ###< symfony/framework-bundle ###
 /test_priv.key
+/.idea
