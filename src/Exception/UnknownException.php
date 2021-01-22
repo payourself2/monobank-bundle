@@ -6,6 +6,6 @@ namespace Payourself2\Bundle\MonobankBundle\Exception;
 
 use Exception;
 
-class ForbiddenException extends Exception
+class UnknownException extends Exception
 {
 }

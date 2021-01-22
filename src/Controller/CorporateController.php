@@ -28,7 +28,7 @@ class CorporateController
 
     public function auth(): Response
     {
-        $result = $this->corporateClient->auth('sp','http://localhost:8080');
+        $result = $this->corporateClient->auth('sp', 'http://localhost:8080');
 
         return new Response(
             '<html><body>' . print_r($result) . '</body></html>'
@@ -59,7 +59,7 @@ class CorporateController
             $request->get('request_id'),
             $request->get('account_id'),
             time() - (7 * 24 * 60 * 60),
-//            time() - (5 * 24 * 60 * 60)
+            //            time() - (5 * 24 * 60 * 60)
             null
         );
 

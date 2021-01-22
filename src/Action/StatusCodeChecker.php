@@ -5,24 +5,29 @@ declare(strict_types=1);
 namespace Payourself2\Bundle\MonobankBundle\Action;
 
 use Payourself2\Bundle\MonobankBundle\Exception;
+use Psr\Http\Message\ResponseInterface;
 
 class StatusCodeChecker
 {
-    public static function check(int $code): void
+    public function check(ResponseInterface $response): void
     {
-        switch($code){
+        switch ($response->getStatusCode()) {
             case 400:
                 throw new Exception\BadRequestException();
-                break;
+
             case 403:
                 throw new Exception\ForbiddenException();
-                break;
+
             case 404:
                 throw new Exception\NotFoundException();
-                break;
+
             case 429:
                 throw new Exception\TooManyRequestsException();
-                break;
+
+            case 200:
+                return;
+            default:
+                throw new Exception\UnknownException($response->getReasonPhrase());
         }
     }
 }

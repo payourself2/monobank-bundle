@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Adapter;
 
+use Nyholm\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 
 use function count;
 
@@ -26,10 +27,18 @@ class SymfonyClientAdapter implements SendRequestAdapterInterface
             $options['headers'] = $request->getHeaders();
         }
 
-        return $this->client->request(
+        $response = $this->client->request(
             $request->getMethod(),
             (string)$request->getUri(),
             $options
+        );
+        $content =
+            $response->getContent(false);
+
+        return new Response(
+            $response->getStatusCode(),
+            $response->getHeaders(false),
+            $response->toStream(false)
         );
     }
 }

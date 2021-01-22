@@ -40,7 +40,7 @@ class PersonalController
         $result = $this->personalClient->clientStatement(
             $request->get('account_id'),
             time() - (7 * 24 * 60 * 60),
-//            time() - (5 * 24 * 60 * 60)
+            //            time() - (5 * 24 * 60 * 60)
             null
         );
 
@@ -48,10 +48,11 @@ class PersonalController
             '<html><body> ' . $result . '</body></html>'
         );
     }
+
     public function webHook(Request $request): Response
     {
         $result = $this->personalClient->setWebHook(
-            $request->get('web_hook_url','https://127.0.0.1'),
+            $request->get('web_hook_url', 'https://127.0.0.1'),
         );
 
         return new Response(
