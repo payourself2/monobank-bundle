@@ -5,7 +5,7 @@
 /.env.*.local
 /.env.test
 /config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
+/public/*
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
@@ -15,5 +15,4 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
-/src/public/*
 /src/Controller/*
