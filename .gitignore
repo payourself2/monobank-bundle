@@ -15,4 +15,5 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
+/src/public/*
 /src/Controller/*
