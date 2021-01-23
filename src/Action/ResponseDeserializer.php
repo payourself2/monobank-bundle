@@ -8,9 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class ResponseDeserializer
 {
-    public function deserialise(ResponseInterface $response, string $type)
+    public function deserialise(ResponseInterface $response): array
     {
-        $type = trim($type);
         $body = $response->getBody()->getContents();
         if (empty($body)) {
             return [];

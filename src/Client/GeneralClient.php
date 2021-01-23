@@ -39,7 +39,7 @@ class GeneralClient
 
         $response = $this->adapter->send($request);
         $this->statusCodeChecker->check($response);
-        $body = $this->deserializer->deserialise($response, 'array<' . CurrencyInfo::class . '>');
+        $body = $this->deserializer->deserialise($response);
 
         foreach ($body as $item) {
             yield new CurrencyInfo(

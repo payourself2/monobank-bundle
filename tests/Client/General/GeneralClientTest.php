@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle\Tests\Client\General;
+namespace Client\General;
 
 use Nyholm\Psr7\Response;
 use Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer;
@@ -18,10 +18,12 @@ use function is_resource;
 
 class GeneralClientTest extends TestCase
 {
+    /** @var resource */
     private $resource;
 
-    public function testInvalidStatuses(): void
+    public function testCOnvertingResult(): void
     {
+        $this->resource = fopen(__DIR__ . '/../../Fixtures/currency.json', 'rb');
         $response = new Response(200, [], $this->resource);
 
         $adapter = $this->createMock(SendRequestAdapterInterface::class);
@@ -36,11 +38,6 @@ class GeneralClientTest extends TestCase
 
         self::assertCount(3, $result);
         self::assertContainsOnlyInstancesOf(CurrencyInfo::class, $result);
-    }
-
-    protected function setUp(): void
-    {
-        $this->resource = fopen(__DIR__ . '/../../Fixtures/currency.json', 'r');
     }
 
     protected function tearDown(): void

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Payourself2\Bundle\MonobankBundle\Client\Action;
+namespace Client\Action;
 
 use Generator;
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
