@@ -26,6 +26,7 @@ class StatusCodeChecker
 
             case 200:
                 return;
+
             default:
                 throw new Exception\UnknownException($response->getReasonPhrase());
         }

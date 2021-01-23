@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle\Tests\Client\Action;
+namespace Tests\Payourself2\Bundle\MonobankBundle\Client\Action;
 
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
 use Payourself2\Bundle\MonobankBundle\Exception;
-use Payourself2\Bundle\MonobankBundle\Exception\TooManyRequestsException;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
@@ -14,7 +13,12 @@ class StatusCodeCheckerTest extends TestCase
 {
     public function throwExceptionsProvider(): \Generator
     {
-        yield 429 => [429, TooManyRequestsException::class];
+        yield 429 => [429, Exception\TooManyRequestsException::class];
+        yield 400 => [400, Exception\BadRequestException::class];
+        yield 403 => [403, Exception\ForbiddenException::class];
+        yield 404 => [404, Exception\NotFoundException::class];
+        yield 429 => [429, Exception\TooManyRequestsException::class];
+        yield 100 => [100, Exception\UnknownException::class];
     }
 
     /**
@@ -29,12 +33,13 @@ class StatusCodeCheckerTest extends TestCase
      * @throws Exception\NotFoundException
      * @throws Exception\UnknownException
      */
-    public function testThrowExceptions(int $code, string $exceptionClass):void
+    public function testThrowExceptions(int $code, string $exceptionClass): void
     {
         $this->expectException($exceptionClass);
 
         $response = $this->createMock(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn($code);
+        $response->method('getReasonPhrase')->willReturn('');
 
         $statusCodeChecker = new StatusCodeChecker();
         $statusCodeChecker->check($response);
