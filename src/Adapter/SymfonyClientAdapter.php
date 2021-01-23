@@ -32,8 +32,6 @@ class SymfonyClientAdapter implements SendRequestAdapterInterface
             (string)$request->getUri(),
             $options
         );
-        $content =
-            $response->getContent(false);
 
         return new Response(
             $response->getStatusCode(),
