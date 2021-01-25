@@ -25,15 +25,13 @@ class ClientStatementRequest implements RequestInterface
 
     public function __construct(
         Signer $signer,
-        string $basePath,
         string $requestId,
         string $accountId,
         int $from,
         ?int $to
     ) {
         $this->method = RequestMethod::GET;
-        $url = sprintf('%s%s', $basePath, self::PATH);
-        $url = str_replace(['{accountId}', '{from}'], [$accountId, $from], $url);
+        $url = str_replace(['{accountId}', '{from}'], [$accountId, $from], self::PATH);
         $url .= $to === null ? '' : "/{$to}";
 
         $this->uri = new Uri($url);

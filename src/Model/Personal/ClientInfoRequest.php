@@ -18,10 +18,10 @@ class ClientInfoRequest implements RequestInterface
 
     private const PATH = '/personal/client-info';
 
-    public function __construct(string $basePath, string $token)
+    public function __construct(string $token)
     {
         $this->method = RequestMethod::GET;
-        $this->uri = new Uri(sprintf('%s%s', $basePath, self::PATH));
+        $this->uri = new Uri(self::PATH);
 
         $headers = [
             Headers::TOKEN => $token,

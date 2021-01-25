@@ -19,10 +19,10 @@ class WebHookRequest implements RequestInterface
 
     private const PATH = '/personal/webhook';
 
-    public function __construct(string $basePath, string $token, string $webHookUrl)
+    public function __construct(string $token, string $webHookUrl)
     {
         $this->method = RequestMethod::POST;
-        $this->uri = new Uri(sprintf('%s%s', $basePath, self::PATH));
+        $this->uri = new Uri(self::PATH);
         $headers = [
             Headers::TOKEN => $token,
         ];

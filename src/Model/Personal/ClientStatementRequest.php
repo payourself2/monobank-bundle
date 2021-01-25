@@ -23,15 +23,13 @@ class ClientStatementRequest implements RequestInterface
     private const ADDITIONAL_PATH = '/{to}';
 
     public function __construct(
-        string $basePath,
         string $token,
         string $accountId,
         int $from,
         ?int $to
     ) {
         $this->method = RequestMethod::GET;
-        $url = sprintf('%s%s', $basePath, self::PATH);
-        $url = str_replace(['{accountId}', '{from}'], [$accountId, $from], $url);
+        $url = str_replace(['{accountId}', '{from}'], [$accountId, $from], self::PATH);
         $url .= $to === null ? '' : "/{$to}";
         $this->uri = new Uri($url);
 

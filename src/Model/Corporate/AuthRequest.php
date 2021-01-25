@@ -19,10 +19,10 @@ class AuthRequest implements RequestInterface
 
     private const PATH = '/personal/auth/request';
 
-    public function __construct(Signer $signer, string $basePath, string $permission, string $callbackUrl)
+    public function __construct(Signer $signer, string $permission, string $callbackUrl)
     {
         $this->method = RequestMethod::POST;
-        $this->uri = new Uri(sprintf('%s%s', $basePath, self::PATH));
+        $this->uri = new Uri(self::PATH);
         $time = time();
         $headers = [
             Headers::KEY => $signer->getPublicKey(),

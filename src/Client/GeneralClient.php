@@ -13,9 +13,8 @@ class GeneralClient
 {
     private Sender $sender;
 
-    public function __construct(
-        Sender $sender
-    ) {
+    public function __construct(Sender $sender)
+    {
         $this->sender = $sender;
     }
 

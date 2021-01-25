@@ -19,10 +19,10 @@ class CheckAuthRequest implements RequestInterface
 
     private const PATH = '/personal/auth/request';
 
-    public function __construct(Signer $signer, string $basePath, string $requestId)
+    public function __construct(Signer $signer, string $requestId)
     {
         $this->method = RequestMethod::GET;
-        $this->uri = new Uri(sprintf('%s%s', $basePath, self::PATH));
+        $this->uri = new Uri(self::PATH);
         $time = time();
         $headers = [
             Headers::KEY => $signer->getPublicKey(),

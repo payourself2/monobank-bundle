@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
+use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
 use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
 use Payourself2\Bundle\MonobankBundle\Model\Personal\ClientInfoRequest;
@@ -12,26 +13,22 @@ use Payourself2\Bundle\MonobankBundle\Model\Personal\WebHookRequest;
 
 class PersonalClient
 {
-    private SendRequestAdapterInterface $adapter;
+    private Sender $sender;
 
     private Signer $signer;
-
-    private string $monobankApiBasePath;
 
     private string $monobankApiPersonalKey;
 
     private GeneralClient $generalClient;
 
     public function __construct(
-        SendRequestAdapterInterface $adapter,
+        Sender $sender,
         Signer $signer,
-        string $monobankApiBasePath,
         string $monobankApiPersonalKey,
         GeneralClient $generalClient
     ) {
-        $this->adapter = $adapter;
+        $this->sender = $sender;
         $this->signer = $signer;
-        $this->monobankApiBasePath = $monobankApiBasePath;
         $this->monobankApiPersonalKey = $monobankApiPersonalKey;
         $this->generalClient = $generalClient;
     }
@@ -43,9 +40,9 @@ class PersonalClient
 
     public function clientInfo()
     {
-        $request = new ClientInfoRequest($this->monobankApiBasePath, $this->monobankApiPersonalKey);
+        $request = new ClientInfoRequest($this->monobankApiPersonalKey);
 
-        return $this->adapter->send($request);
+        return $this->sender->send($request);
     }
 
     public function clientStatement(
@@ -54,24 +51,22 @@ class PersonalClient
         ?int $to
     ) {
         $request = new ClientStatementRequest(
-            $this->monobankApiBasePath,
             $this->monobankApiPersonalKey,
             $accountId,
             $from,
             $to
         );
 
-        return $this->adapter->send($request);
+        return $this->sender->send($request);
     }
 
     public function setWebHook(string $webHookUrl)
     {
         $request = new WebHookRequest(
-            $this->monobankApiBasePath,
             $this->monobankApiPersonalKey,
             $webHookUrl
         );
 
-        return $this->adapter->send($request);
+        return $this->sender->send($request);
     }
 }
