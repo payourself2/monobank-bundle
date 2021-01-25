@@ -4,47 +4,24 @@ declare(strict_types=1);
 
 namespace Client\General;
 
-use Nyholm\Psr7\Response;
-use Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer;
-use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
-use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
+use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Client\GeneralClient;
 use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyInfo;
 use PHPUnit\Framework\TestCase;
 
-use function fclose;
-use function fopen;
-use function is_resource;
-
 class GeneralClientTest extends TestCase
 {
-    /** @var resource */
-    private $resource;
-
-    public function testCOnvertingResult(): void
+    public function testConvertingResult(): void
     {
-        $this->resource = fopen(__DIR__ . '/../../Fixtures/currency.json', 'rb');
-        $response = new Response(200, [], $this->resource);
+        $data = include(__DIR__ . '/../../Fixtures/currencyArray.php');
+        $sender = $this->createMock(Sender::class);
+        $sender->method('send')->willReturn($data);
 
-        $adapter = $this->createMock(SendRequestAdapterInterface::class);
-        $adapter->method('send')->willReturn($response);
-
-        $deserializer = new ResponseDeserializer();
-        $statusCodeChecker = new StatusCodeChecker();
-        $monobankApiBasePath = 'http://url';
-
-        $client = new GeneralClient($adapter, $deserializer, $statusCodeChecker, $monobankApiBasePath);
+        $client = new GeneralClient($sender);
         $result = iterator_to_array($client->currency());
 
         self::assertCount(3, $result);
         self::assertContainsOnlyInstancesOf(CurrencyInfo::class, $result);
-    }
-
-    protected function tearDown(): void
-    {
-        if (is_resource($this->resource)) {
-            fclose($this->resource);
-        }
     }
 }
 

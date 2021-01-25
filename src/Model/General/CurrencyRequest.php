@@ -17,7 +17,7 @@ class CurrencyRequest implements RequestInterface
 
     private const PATH = '/bank/currency';
 
-    public function __construct(string $basePath)
+    public function __construct(string $basePath = '')
     {
         $this->method = RequestMethod::GET;
         $this->uri = new Uri(sprintf('%s%s', $basePath, self::PATH));

@@ -1,0 +1,25 @@
+<?php
+
+return [
+  [
+    "currencyCodeA" =>840,
+    "currencyCodeB" =>980,
+    "date" =>1611353409,
+    "rateBuy" =>28.05,
+    "rateSell" =>28.3198
+  ],
+  [
+    "currencyCodeA" =>985,
+    "currencyCodeB" =>980,
+    "date" =>1611439165,
+    "rateBuy" =>7.48,
+    "rateSell" =>7.64,
+    "rateCross" =>7.64
+  ],
+  [
+    "currencyCodeA" =>826,
+    "currencyCodeB" =>980,
+    "date" =>1611439072,
+    "rateCross" =>38.903
+  ]
+];
