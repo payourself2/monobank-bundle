@@ -55,18 +55,8 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
         "phpstan": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/phpunit",
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
+        "test": "vendor/bin/phpunit"
     },
     "conflict": {
         "symfony/symfony": "*"
