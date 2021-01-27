@@ -16,7 +16,7 @@ bind:
     string $monobankApiPersonalKey: "%monobank_personal_key%"
  ```
 ## Docs
-###main
+### main
 https://api.monobank.ua/docs/
-###sign
+### sign
 https://gist.github.com/Sominemo/64845669d6326f2f73d356f025656bdb#file-mono-corp-api-signing-ru-md
