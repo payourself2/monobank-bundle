@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
+use Generator;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
-use Payourself2\Bundle\MonobankBundle\Action\Signer;
-use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
+use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyInfo;
 use Payourself2\Bundle\MonobankBundle\Model\Personal\ClientInfoRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Personal\ClientStatementRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Personal\WebHookRequest;
@@ -15,25 +15,24 @@ class PersonalClient
 {
     private Sender $sender;
 
-    private Signer $signer;
+    private GeneralClient $generalClient;
 
     private string $monobankApiPersonalKey;
 
-    private GeneralClient $generalClient;
-
     public function __construct(
         Sender $sender,
-        Signer $signer,
-        string $monobankApiPersonalKey,
-        GeneralClient $generalClient
+        GeneralClient $generalClient,
+        string $monobankApiPersonalKey
     ) {
         $this->sender = $sender;
-        $this->signer = $signer;
-        $this->monobankApiPersonalKey = $monobankApiPersonalKey;
         $this->generalClient = $generalClient;
+        $this->monobankApiPersonalKey = $monobankApiPersonalKey;
     }
 
-    public function currency()
+    /**
+     * @return Generator<int, CurrencyInfo>
+     */
+    public function currency(): Generator
     {
         return $this->generalClient->currency();
     }

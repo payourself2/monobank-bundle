@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
+use Generator;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
 use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
@@ -11,7 +12,7 @@ use Payourself2\Bundle\MonobankBundle\Model\Corporate\AuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Corporate\CheckAuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Corporate\ClientInfoRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Corporate\ClientStatementRequest;
-use Payourself2\Bundle\MonobankBundle\Model\Corporate\CurrencyRequest;
+use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyInfo;
 
 class CorporateClient
 {
@@ -33,7 +34,10 @@ class CorporateClient
         $this->generalClient = $generalClient;
     }
 
-    public function currency()
+    /**
+     * @return Generator<int, CurrencyInfo>
+     */
+    public function currency(): Generator
     {
         return $this->generalClient->currency();
     }

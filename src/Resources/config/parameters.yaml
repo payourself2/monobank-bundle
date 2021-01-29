@@ -1,0 +1,5 @@
+parameters:
+    payourself2_monobank_api_base_path: 'https://api.monobank.ua'
+    payourself2_monobank_personal_key: ''
+    payourself2_monobank_pub_key: ''
+    payourself2_monobank_priv_key: ''

@@ -18,6 +18,9 @@ class GeneralClient
         $this->sender = $sender;
     }
 
+    /**
+     * @return Generator<int, CurrencyInfo>
+     */
     public function currency(): Generator
     {
         $request = new CurrencyRequest();
