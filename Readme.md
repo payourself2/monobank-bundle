@@ -46,7 +46,6 @@ Configuration
 #### If you are going to use personal api:
 ```yaml
 parameters:
-    payourself2_monobank_api_base_path: 'https://api.monobank.ua'
     payourself2_monobank_personal_key: '%env(PAYOURSELF2_MONOBANK_PERSONAL_KEY)%'
  ```
 
