@@ -3,23 +3,23 @@ services:
         class: Payourself2\Bundle\MonobankBundle\Client\GeneralClient
         public: true
         arguments:
-            $sender: '@payourself2_monobank_action_sender'
+            - '@payourself2_monobank_action_sender'
 
     payourself2_monobank_personal_client:
         class: Payourself2\Bundle\MonobankBundle\Client\PersonalClient
         public: true
         arguments:
-            $sender: '@payourself2_monobank_action_sender'
-            $generalClient: '@payourself2_monobank_general_client'
-            $monobankApiPersonalKey: "%payourself2_monobank_personal_key%"
+            - '@payourself2_monobank_action_sender'
+            - '@payourself2_monobank_general_client'
+            - '%payourself2_monobank_personal_key%'
 
     payourself2_monobank_corporate_client:
         class: Payourself2\Bundle\MonobankBundle\Client\CorporateClient
         public: true
         arguments:
-            $sender: '@payourself2_monobank_action_sender'
-            $signer: '@payourself2_monobank_action_signer'
-            $generalClient: '@payourself2_monobank_general_client'
+            - '@payourself2_monobank_action_sender'
+            - '@payourself2_monobank_action_signer'
+            - '@payourself2_monobank_general_client'
 
 
     payourself2_monobank_action_response_deserializer:
@@ -30,18 +30,17 @@ services:
         class: Payourself2\Bundle\MonobankBundle\Action\Sender
         public: false
         arguments:
-            $adapter: '@payourself2_monobank_send_request_adapter'
-            $deserializer : '@payourself2_monobank_action_response_deserializer'
-            $statusCodeChecker: '@payourself2_monobank_action_status_code_checker'
-            $monobankApiBasePath: "%payourself2_monobank_api_base_path%"
-
+            - '@payourself2_monobank_send_request_adapter'
+            - '@payourself2_monobank_action_response_deserializer'
+            - '@payourself2_monobank_action_status_code_checker'
+            - '%payourself2_monobank_api_base_path%'
 
     payourself2_monobank_action_signer:
         class: Payourself2\Bundle\MonobankBundle\Action\Signer
         public: false
         arguments:
-            $monobankApiPublicKey: "%payourself2_monobank_pub_key%"
-            $monobankApiPrivateKey: "%payourself2_monobank_priv_key%"
+            - "%payourself2_monobank_pub_key%"
+            - "%payourself2_monobank_priv_key%"
 
     payourself2_monobank_action_status_code_checker:
         class: Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker
