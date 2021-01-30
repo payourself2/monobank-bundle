@@ -21,6 +21,9 @@ services:
             - '@payourself2_monobank.action_signer'
             - '@payourself2_monobank.general_client'
 
+    payourself2_monobank.send_request_adapter:
+        class: Payourself2\Bundle\MonobankBundle\Adapter\NullAdapter
+        public: true
 
     payourself2_monobank.action_response_deserializer:
         class: Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer

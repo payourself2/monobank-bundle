@@ -14,13 +14,21 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('payourself2_monobank');
 
         $treeBuilder->getRootNode()
+            ->addDefaultsIfNotSet()
             ->children()
-            ->scalarNode('api_base_path')->end()
-            ->scalarNode('personal_key')->end()
-            ->scalarNode('pub_key')->end()
-            ->scalarNode('priv_key')->end()
+            ->scalarNode('api_base_path')
+            ->defaultValue('https://api.monobank.ua')
             ->end()
-        ;
+            ->scalarNode('personal_key')
+            ->defaultValue('')
+            ->end()
+            ->scalarNode('pub_key')
+            ->defaultValue('')
+            ->end()
+            ->scalarNode('priv_key')
+            ->defaultValue('')
+            ->end()
+            ->end();
 
         return $treeBuilder;
     }
