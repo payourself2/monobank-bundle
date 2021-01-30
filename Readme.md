@@ -46,20 +46,22 @@ Configuration
 #### If you are going to use personal api:
 ```yaml
 parameters:
-    payourself2_monobank_personal_key: '%env(PAYOURSELF2_MONOBANK_PERSONAL_KEY)%'
+    payourself2_monobank:
+        personal_key: '%env(PAYOURSELF2_MONOBANK_PERSONAL_KEY)%'
  ```
 
 #### If you are going to use corporate api:
 ```yaml
 parameters:
-    payourself2_monobank_pub_key: '%env(PAYOURSELF2_MONOBANK_PUB_KEY)%'
-    payourself2_monobank_priv_key: '%env(PAYOURSELF2_MONOBANK_PRIV_KEY)%'
+    payourself2_monobank:
+        pub_key: '%env(PAYOURSELF2_MONOBANK_PUB_KEY)%'
+        priv_key: '%env(PAYOURSELF2_MONOBANK_PRIV_KEY)%'
  ```
 
-redefine your payourself2_monobank_send_request_adapter 
+redefine your payourself2_monobank.send_request_adapter 
 ```yaml
 services:
-    payourself2_monobank_send_request_adapter:
+    payourself2_monobank.send_request_adapter:
         class: Payourself2\Bundle\MonobankBundle\Adapter\SymfonyClientAdapter
         autowire: true
         autoconfigure: true
