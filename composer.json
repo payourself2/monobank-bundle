@@ -42,9 +42,6 @@
     },
     "scripts": {
         "phpstan": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/phpunit",
-        "auto-scripts": {
-
-        }
+        "test": "vendor/bin/phpunit"
     }
 }
