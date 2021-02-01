@@ -15,6 +15,9 @@ class StatusCodeChecker
             case 400:
                 throw new Exception\BadRequestException();
 
+            case 401:
+                throw new Exception\UnauthorizedException();
+
             case 403:
                 throw new Exception\ForbiddenException();
 

@@ -36,7 +36,7 @@ class SymfonyClientAdapter implements SendRequestAdapterInterface
         return new Response(
             $response->getStatusCode(),
             $response->getHeaders(false),
-            $response->toStream(false)
+            $response->getContent(false)
         );
     }
 }

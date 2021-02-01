@@ -15,6 +15,6 @@ class ResponseDeserializer
             return [];
         }
 
-        return json_decode($body, true);
+        return json_decode($body, true, 512, JSON_THROW_ON_ERROR);
     }
 }

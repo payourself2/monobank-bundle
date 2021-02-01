@@ -11,7 +11,6 @@ use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
 use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
 use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
-use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyInfo;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 
@@ -33,10 +32,10 @@ class SenderTest extends TestCase
         });
 
         $sender = new Sender(
-            $adapter,
             $this->createMock(ResponseDeserializer::class),
             $this->createMock(StatusCodeChecker::class),
-            $expectedUrl
+            $expectedUrl,
+            $adapter
         );
         $request = new Request( RequestMethod::GET,$expectedPath);
         $sender->send($request);
@@ -55,10 +54,10 @@ class SenderTest extends TestCase
         });
 
         $sender = new Sender(
-            $adapter,
             $this->createMock(ResponseDeserializer::class),
             $this->createMock(StatusCodeChecker::class),
-            'http://url2'
+            'http://url2',
+            $adapter
         );
         $request = new Request( RequestMethod::GET, $expected);
         $sender->send($request);

@@ -8,6 +8,7 @@ use Generator;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
 use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
+use Payourself2\Bundle\MonobankBundle\Exception\UnauthorizedException;
 use Payourself2\Bundle\MonobankBundle\Model\Corporate\AuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Corporate\CheckAuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Corporate\ClientInfoRequest;
@@ -17,8 +18,6 @@ use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyInfo;
 class CorporateClient
 {
     private Sender $sender;
-
-    private SendRequestAdapterInterface $adapter;
 
     private Signer $signer;
 
@@ -49,11 +48,17 @@ class CorporateClient
         return $this->sender->send($request);
     }
 
-    public function checkAuth(string $requestId)
+    public function checkAuth(string $requestId): bool
     {
-        $request = new CheckAuthRequest($this->signer, $requestId);
+        try {
+            $request = new CheckAuthRequest($this->signer, $requestId);
 
-        return $this->sender->send($request);
+            $this->sender->send($request);
+
+            return true;
+        } catch (UnauthorizedException $e) {
+            return false;
+        }
     }
 
     public function clientInfo(string $requestId)
