@@ -2,6 +2,9 @@
 
 namespace Payourself2\Bundle\MonobankBundle\DependencyInjection;
 
+use Payourself2\Bundle\MonobankBundle\Action\Sender;
+use Payourself2\Bundle\MonobankBundle\Action\Signer;
+use Payourself2\Bundle\MonobankBundle\Client\PersonalClient;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -22,13 +25,13 @@ class MonobankExtension extends Extension
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        $definition = $container->getDefinition('payourself2_monobank.personal_client');
+        $definition = $container->getDefinition(PersonalClient::class);
         $definition->replaceArgument(2, $config['personal_key']);
 
-        $definition = $container->getDefinition('payourself2_monobank.action_sender');
-        $definition->replaceArgument(3, $config['api_base_path']);
+        $definition = $container->getDefinition(Sender::class);
+        $definition->replaceArgument(2, $config['api_base_path']);
 
-        $definition = $container->getDefinition('payourself2_monobank.action_signer');
+        $definition = $container->getDefinition(Signer::class);
         $definition->replaceArgument(0, $config['pub_key']);
         $definition->replaceArgument(1, $config['priv_key']);
     }
