@@ -1,46 +1,71 @@
 services:
     Payourself2\Bundle\MonobankBundle\Client\GeneralClient:
-        alias: payourself2_monobank.general_client
-        public: true
+        public: false
         arguments:
             - '@payourself2_monobank.action_sender'
 
-    Payourself2\Bundle\MonobankBundle\Client\PersonalClient:
-        alias: payourself2_monobank.personal_client
+    payourself2_monobank.general_client:
+        alias: '@Payourself2\Bundle\MonobankBundle\Client\GeneralClient'
         public: true
+
+    Payourself2\Bundle\MonobankBundle\Client\PersonalClient:
+        public: false
         arguments:
             - '@payourself2_monobank.action_sender'
             - '@payourself2_monobank.general_client'
             - '%payourself2_monobank.personal_key%'
 
-    Payourself2\Bundle\MonobankBundle\Client\CorporateClient:
-        alias: payourself2_monobank.corporate_client
+    payourself2_monobank.personal_client:
+        alias: '@Payourself2\Bundle\MonobankBundle\Client\PersonalClient'
         public: true
+
+
+    Payourself2\Bundle\MonobankBundle\Client\CorporateClient:
+        public: false
         arguments:
             - '@payourself2_monobank.action_sender'
             - '@payourself2_monobank.action_signer'
             - '@payourself2_monobank.general_client'
 
+    payourself2_monobank.corporate_client:
+        alias: '@Payourself2\Bundle\MonobankBundle\Client\CorporateClient'
+        public: true
+
 
     Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer:
-        alias: payourself2_monobank.action_response_deserializer
         public: false
 
+    payourself2_monobank.action_response_deserializer:
+        alias: '@Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer'
+        public: true
+
+
     Payourself2\Bundle\MonobankBundle\Action\Sender:
-        alias: payourself2_monobank.action_sender
         public: false
         arguments:
             - '@payourself2_monobank.action_response_deserializer'
             - '@payourself2_monobank.action_status_code_checker'
             - '%payourself2_monobank.api_base_path%'
 
+    payourself2_monobank.action_sender:
+        alias: '@Payourself2\Bundle\MonobankBundle\Action\Sender'
+        public: true
+
+
     Payourself2\Bundle\MonobankBundle\Action\Signer:
-        alias: payourself2_monobank.action_signer
         public: false
         arguments:
             - "%payourself2_monobank.pub_key%"
             - "%payourself2_monobank.priv_key%"
 
+    payourself2_monobank.action_signer:
+        alias: '@Payourself2\Bundle\MonobankBundle\Action\Signer'
+        public: true
+
+
     Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker:
-        alias: payourself2_monobank.action_status_code_checker
         public: false
+
+    payourself2_monobank.action_status_code_checker:
+        alias: '@Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker'
+        public: true
