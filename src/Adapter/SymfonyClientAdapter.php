@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Adapter;
 
+use Nyholm\Psr7\Stream;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -32,11 +33,12 @@ class SymfonyClientAdapter implements SendRequestAdapterInterface
             (string)$request->getUri(),
             $options
         );
-
+        $stream = Stream::create($response->getContent(false));
+        $stream->rewind();
         return new Response(
             $response->getStatusCode(),
             $response->getHeaders(false),
-            $response->getContent(false)
+            $stream
         );
     }
 }

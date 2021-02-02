@@ -30,10 +30,13 @@ services:
 
     payourself2_monobank.action_response_deserializer: '@Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer'
 
+    payourself2_monobank.send_request_adapter:
+        class: Payourself2\Bundle\MonobankBundle\Adapter\NullAdapter
 
     Payourself2\Bundle\MonobankBundle\Action\Sender:
         public: false
         arguments:
+            - '@payourself2_monobank.send_request_adapter'
             - '@payourself2_monobank.action_response_deserializer'
             - '@payourself2_monobank.action_status_code_checker'
             - '%payourself2_monobank.api_base_path%'

@@ -32,10 +32,10 @@ class SenderTest extends TestCase
         });
 
         $sender = new Sender(
+            $adapter,
             $this->createMock(ResponseDeserializer::class),
             $this->createMock(StatusCodeChecker::class),
-            $expectedUrl,
-            $adapter
+            $expectedUrl
         );
         $request = new Request( RequestMethod::GET,$expectedPath);
         $sender->send($request);
@@ -54,10 +54,10 @@ class SenderTest extends TestCase
         });
 
         $sender = new Sender(
+            $adapter,
             $this->createMock(ResponseDeserializer::class),
             $this->createMock(StatusCodeChecker::class),
-            'http://url2',
-            $adapter
+            'http://url2'
         );
         $request = new Request( RequestMethod::GET, $expected);
         $sender->send($request);

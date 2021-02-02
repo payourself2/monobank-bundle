@@ -21,15 +21,15 @@ class Sender
     private string $monobankApiBasePath;
 
     public function __construct(
+        SendRequestAdapterInterface $adapter,
         ResponseDeserializer $deserializer,
         StatusCodeChecker $statusCodeChecker,
-        string $monobankApiBasePath,
-        ?SendRequestAdapterInterface $adapter = null
+        string $monobankApiBasePath
     ) {
+        $this->adapter = $adapter;
         $this->deserializer = $deserializer;
         $this->statusCodeChecker = $statusCodeChecker;
         $this->monobankApiBasePath = $monobankApiBasePath;
-        $this->adapter = $adapter?? new NullAdapter();
     }
 
     /**
