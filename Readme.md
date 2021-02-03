@@ -1,3 +1,8 @@
+[![Packagist](https://img.shields.io/packagist/v/payourself2/monobank-bundle.svg)](https://packagist.org/packages/payourself2/monobank-bundle)
+[![Packagist](https://img.shields.io/packagist/dt/payourself2/monobank-bundle.svg)](https://packagist.org/packages/payourself2/monobank-bundle)
+[![Code Coverage](https://img.shields.io/codecov/c/gh/payourself2/monobank-bundle/main?style=flat-square)](https://app.codecov.io/gh/payourself2/monobank-bundle)
+![Psalm coverage](https://shepherd.dev/github/payourself2/monobank-bundle/coverage.svg)
+
 Installation
 ============
 
