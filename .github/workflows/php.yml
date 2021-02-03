@@ -35,6 +35,11 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
+    
+    - name: Run psalm
+      uses: docker://vimeo/psalm-github-actions
+      with:
+        args: --shepherd
 
     - name: Run phpstan
       run: composer run-script phpstan
