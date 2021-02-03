@@ -30,11 +30,18 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
     - name: Run test suite
       run: composer run-script test
+    
+    - name: Publish coverage
+      uses: codecov/codecov-action@v1
+      with:
+          file: ./build/clover.xml
+    
+    - name: Run psalm
+      uses: docker://vimeo/psalm-github-actions
+      with:
+        args: --shepherd
 
     - name: Run phpstan
       run: composer run-script phpstan
