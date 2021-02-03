@@ -33,6 +33,10 @@ jobs:
     - name: Run test suite
       run: composer run-script test
     
+    - uses: actions/download-artifact@v2
+      with:
+          path: build
+    
     - name: Publish coverage
       uses: codecov/codecov-action@v1
       with:
