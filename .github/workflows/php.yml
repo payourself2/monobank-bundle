@@ -32,10 +32,14 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
-    
     - uses: actions/download-artifact@v2
+      id: download
       with:
+          name: 'my-artifact'
           path: build
+    
+    - name: 'Echo download path'
+      run: echo ${{steps.download.outputs.download-path}}
     
     - name: Publish coverage
       uses: codecov/codecov-action@v1
