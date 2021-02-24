@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle\Model\Corporate;
+namespace Payourself2\Bundle\MonobankBundle\Model\Request\Corporate;
 
 use Nyholm\Psr7\MessageTrait;
 use Nyholm\Psr7\RequestTrait;
@@ -12,17 +12,17 @@ use Payourself2\Bundle\MonobankBundle\Config\Headers;
 use Payourself2\Bundle\MonobankBundle\Config\RequestMethod;
 use Psr\Http\Message\RequestInterface;
 
-class CheckAuthRequest implements RequestInterface
+class ClientInfoRequest implements RequestInterface
 {
     use MessageTrait;
     use RequestTrait;
 
-    private const PATH = '/personal/auth/request';
+    private const PATH = '/personal/client-info';
 
-    public function __construct(Signer $signer, string $requestId)
+    public function __construct(Signer $signer,  string $requestId)
     {
         $this->method = RequestMethod::GET;
-        $this->uri = new Uri(self::PATH);
+        $this->uri = new Uri( self::PATH);
         $time = time();
         $headers = [
             Headers::KEY => $signer->getPublicKey(),

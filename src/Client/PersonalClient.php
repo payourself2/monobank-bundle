@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
 use Generator;
+use Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
-use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyInfo;
-use Payourself2\Bundle\MonobankBundle\Model\Personal\ClientInfoRequest;
-use Payourself2\Bundle\MonobankBundle\Model\Personal\ClientStatementRequest;
-use Payourself2\Bundle\MonobankBundle\Model\Personal\WebHookRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\ClientInfoRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\ClientStatementRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\WebHookRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Response\ClientInfo;
+use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
+use Payourself2\Bundle\MonobankBundle\Model\Response\Statement;
 
 class PersonalClient
 {
@@ -66,6 +69,8 @@ class PersonalClient
             $webHookUrl
         );
 
-        return $this->sender->send($request);
+        $this->sender->send($request);
+
+        return true;
     }
 }

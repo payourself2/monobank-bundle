@@ -7,13 +7,12 @@ namespace Payourself2\Bundle\MonobankBundle\Client;
 use Generator;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
-use Payourself2\Bundle\MonobankBundle\Adapter\SendRequestAdapterInterface;
 use Payourself2\Bundle\MonobankBundle\Exception\UnauthorizedException;
-use Payourself2\Bundle\MonobankBundle\Model\Corporate\AuthRequest;
-use Payourself2\Bundle\MonobankBundle\Model\Corporate\CheckAuthRequest;
-use Payourself2\Bundle\MonobankBundle\Model\Corporate\ClientInfoRequest;
-use Payourself2\Bundle\MonobankBundle\Model\Corporate\ClientStatementRequest;
-use Payourself2\Bundle\MonobankBundle\Model\General\CurrencyInfo;
+use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\AuthRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\CheckAuthRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientInfoRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientStatementRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Request\General\CurrencyInfo;
 
 class CorporateClient
 {
@@ -33,10 +32,8 @@ class CorporateClient
         $this->generalClient = $generalClient;
     }
 
-    /**
-     * @return Generator<int, CurrencyInfo>
-     */
-    public function currency(): Generator
+
+    public function currency()
     {
         return $this->generalClient->currency();
     }

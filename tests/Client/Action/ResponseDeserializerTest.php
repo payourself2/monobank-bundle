@@ -21,7 +21,7 @@ class ResponseDeserializerTest extends TestCase
         $response = new Response(200, [], $this->resource);
 
         $deserializer = new ResponseDeserializer();
-        $result = $deserializer->deserialise($response);
+        $result = $deserializer->deserialize($response);
 
         self::assertSame([], $result);
     }
@@ -32,7 +32,7 @@ class ResponseDeserializerTest extends TestCase
         $response = new Response(200, [], $this->resource);
 
         $deserializer = new ResponseDeserializer();
-        $result = $deserializer->deserialise($response);
+        $result = $deserializer->deserialize($response);
         $expected = include(__DIR__ . '/../../Fixtures/currencyArray.php');
         self::assertSame($expected, $result);
     }

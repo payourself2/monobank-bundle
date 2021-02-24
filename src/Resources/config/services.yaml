@@ -3,6 +3,7 @@ services:
         public: false
         arguments:
             - '@payourself2_monobank.action_sender'
+            - '@jms_serializer'
 
     payourself2_monobank.general_client: '@Payourself2\Bundle\MonobankBundle\Client\GeneralClient'
 
@@ -10,6 +11,7 @@ services:
         public: false
         arguments:
             - '@payourself2_monobank.action_sender'
+            - '@payourself2_monobank.action_response_deserializer'
             - '@payourself2_monobank.general_client'
             - '%payourself2_monobank.personal_key%'
 
@@ -37,7 +39,6 @@ services:
         public: false
         arguments:
             - '@payourself2_monobank.send_request_adapter'
-            - '@payourself2_monobank.action_response_deserializer'
             - '@payourself2_monobank.action_status_code_checker'
             - '%payourself2_monobank.api_base_path%'
 

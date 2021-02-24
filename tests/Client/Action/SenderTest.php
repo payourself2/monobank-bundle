@@ -33,7 +33,6 @@ class SenderTest extends TestCase
 
         $sender = new Sender(
             $adapter,
-            $this->createMock(ResponseDeserializer::class),
             $this->createMock(StatusCodeChecker::class),
             $expectedUrl
         );
@@ -55,7 +54,6 @@ class SenderTest extends TestCase
 
         $sender = new Sender(
             $adapter,
-            $this->createMock(ResponseDeserializer::class),
             $this->createMock(StatusCodeChecker::class),
             'http://url2'
         );

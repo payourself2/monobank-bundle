@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle\Model\General;
+namespace Payourself2\Bundle\MonobankBundle\Model\Response;
 
 use DateTime;
 
@@ -37,5 +37,21 @@ class CurrencyInfo
         $this->rateSell = $rateSell;
         $this->rateBuy = $rateBuy;
         $this->rateCross = $rateCross;
+    }
+
+    /**
+     * @param array<string, mixed> $item
+     * @return self
+     */
+    public static function create(array $item): self
+    {
+        return new CurrencyInfo(
+            $item['currencyCodeA'],
+            $item['currencyCodeB'],
+            $item['date'],
+            $item['rateSell'] ?? null,
+            $item['rateBuy'] ?? null,
+            $item['rateCross'] ?? null
+        );
     }
 }

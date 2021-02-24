@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Payourself2\Bundle\MonobankBundle\Model\General;
+namespace Payourself2\Bundle\MonobankBundle\Model\Request\General;
 
 use Nyholm\Psr7\MessageTrait;
 use Nyholm\Psr7\RequestTrait;
