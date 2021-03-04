@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
-use Generator;
-use Payourself2\Bundle\MonobankBundle\Action\Sender;
+use Payourself2\Bundle\MonobankBundle\Action\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
 use Payourself2\Bundle\MonobankBundle\Exception\UnauthorizedException;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\AuthRequest;
@@ -16,22 +15,21 @@ use Payourself2\Bundle\MonobankBundle\Model\Request\General\CurrencyInfo;
 
 class CorporateClient
 {
-    private Sender $sender;
+    private RequestHandler $requestHandler;
 
     private Signer $signer;
 
     private GeneralClient $generalClient;
 
     public function __construct(
-        Sender $sender,
+        RequestHandler $requestHandler,
         Signer $signer,
         GeneralClient $generalClient
     ) {
-        $this->sender = $sender;
+        $this->requestHandler = $requestHandler;
         $this->signer = $signer;
         $this->generalClient = $generalClient;
     }
-
 
     public function currency()
     {
@@ -42,7 +40,7 @@ class CorporateClient
     {
         $request = new AuthRequest($this->signer, $permission, $callbackUrl);
 
-        return $this->sender->send($request);
+        return $this->requestHandler->handle($request, '');
     }
 
     public function checkAuth(string $requestId): bool
@@ -50,7 +48,7 @@ class CorporateClient
         try {
             $request = new CheckAuthRequest($this->signer, $requestId);
 
-            $this->sender->send($request);
+            $this->requestHandler->handle($request, null);
 
             return true;
         } catch (UnauthorizedException $e) {
@@ -62,7 +60,7 @@ class CorporateClient
     {
         $request = new ClientInfoRequest($this->signer, $requestId);
 
-        return $this->sender->send($request);
+        return $this->requestHandler->handle($request, '');
     }
 
     public function clientStatement(
@@ -79,6 +77,6 @@ class CorporateClient
             $to
         );
 
-        return $this->sender->send($request);
+        return $this->requestHandler->handle($request, '');
     }
 }

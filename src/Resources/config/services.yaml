@@ -2,16 +2,14 @@ services:
     Payourself2\Bundle\MonobankBundle\Client\GeneralClient:
         public: false
         arguments:
-            - '@payourself2_monobank.action_sender'
-            - '@jms_serializer'
+            - '@payourself2_monobank.action_request_handler'
 
     payourself2_monobank.general_client: '@Payourself2\Bundle\MonobankBundle\Client\GeneralClient'
 
     Payourself2\Bundle\MonobankBundle\Client\PersonalClient:
         public: false
         arguments:
-            - '@payourself2_monobank.action_sender'
-            - '@payourself2_monobank.action_response_deserializer'
+            - '@payourself2_monobank.action_request_handler'
             - '@payourself2_monobank.general_client'
             - '%payourself2_monobank.personal_key%'
 
@@ -20,7 +18,7 @@ services:
     Payourself2\Bundle\MonobankBundle\Client\CorporateClient:
         public: false
         arguments:
-            - '@payourself2_monobank.action_sender'
+            - '@payourself2_monobank.action_request_handler'
             - '@payourself2_monobank.action_signer'
             - '@payourself2_monobank.general_client'
 
@@ -44,6 +42,14 @@ services:
 
     payourself2_monobank.action_sender: '@Payourself2\Bundle\MonobankBundle\Action\Sender'
 
+    Payourself2\Bundle\MonobankBundle\Action\RequestHandler:
+        public: false
+        arguments:
+            - '@payourself2_monobank.action_sender'
+            - '@jms_serializer'
+
+    payourself2_monobank.action_request_handler: '@Payourself2\Bundle\MonobankBundle\Action\RequestHandler'
+
     Payourself2\Bundle\MonobankBundle\Action\Signer:
         public: false
         arguments:
@@ -51,7 +57,6 @@ services:
             - "%payourself2_monobank.priv_key%"
 
     payourself2_monobank.action_signer: '@Payourself2\Bundle\MonobankBundle\Action\Signer'
-
 
     Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker:
         public: false

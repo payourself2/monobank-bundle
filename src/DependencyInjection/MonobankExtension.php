@@ -26,7 +26,7 @@ class MonobankExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $definition = $container->getDefinition(PersonalClient::class);
-        $definition->replaceArgument(2, $config['personal_key']);
+        $definition->replaceArgument(3, $config['personal_key']);
 
         $definition = $container->getDefinition(Sender::class);
         $definition->replaceArgument(2, $config['api_base_path']);

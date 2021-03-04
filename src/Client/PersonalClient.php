@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
 use Generator;
+use Payourself2\Bundle\MonobankBundle\Action\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\ClientInfoRequest;
@@ -16,18 +17,18 @@ use Payourself2\Bundle\MonobankBundle\Model\Response\Statement;
 
 class PersonalClient
 {
-    private Sender $sender;
+    private RequestHandler $requestHandler;
 
     private GeneralClient $generalClient;
 
     private string $monobankApiPersonalKey;
 
     public function __construct(
-        Sender $sender,
+        RequestHandler $requestHandler,
         GeneralClient $generalClient,
         string $monobankApiPersonalKey
     ) {
-        $this->sender = $sender;
+        $this->requestHandler = $requestHandler;
         $this->generalClient = $generalClient;
         $this->monobankApiPersonalKey = $monobankApiPersonalKey;
     }
@@ -44,7 +45,7 @@ class PersonalClient
     {
         $request = new ClientInfoRequest($this->monobankApiPersonalKey);
 
-        return $this->sender->send($request);
+        return $this->requestHandler->handle($request,'');
     }
 
     public function clientStatement(
@@ -59,7 +60,7 @@ class PersonalClient
             $to
         );
 
-        return $this->sender->send($request);
+        return $this->requestHandler->handle($request,'');
     }
 
     public function setWebHook(string $webHookUrl)
@@ -69,7 +70,7 @@ class PersonalClient
             $webHookUrl
         );
 
-        $this->sender->send($request);
+        $this->requestHandler->handle($request,null);
 
         return true;
     }

@@ -4,30 +4,23 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
-use JMS\Serializer\SerializerInterface;
-use Payourself2\Bundle\MonobankBundle\Action\Sender;
+use Payourself2\Bundle\MonobankBundle\Action\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Model\Request\General\CurrencyRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
 
 class GeneralClient
 {
-    private Sender $sender;
+    private RequestHandler $requestHandler;
 
-    private SerializerInterface $jmsSerializer;
-
-    public function __construct(Sender $sender, SerializerInterface $jmsSerializer)
+    public function __construct(RequestHandler $requestHandler)
     {
-        $this->sender = $sender;
-        $this->jmsSerializer = $jmsSerializer;
+        $this->requestHandler = $requestHandler;
     }
 
-    public function currency()
+    public function currency(): array
     {
         $request = new CurrencyRequest();
 
-        $response = $this->sender->send($request);
-        $result =  $this->jmsSerializer->deserialize($response->getBody()->getContents(), 'array<'.CurrencyInfo::class.'>', 'json');
-
-        return $result;
+        return $this->requestHandler->handle($request, 'array<' . CurrencyInfo::class . '>');
     }
 }
