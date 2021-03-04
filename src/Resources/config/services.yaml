@@ -3,7 +3,7 @@ services:
         public: false
         arguments:
             - '@payourself2_monobank.action_sender'
-            - '@JMS\Serializer\SerializerInterface'
+            - '@jms_serializer'
 
     payourself2_monobank.general_client: '@Payourself2\Bundle\MonobankBundle\Client\GeneralClient'
 
