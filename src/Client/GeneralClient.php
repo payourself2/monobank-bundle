@@ -21,7 +21,6 @@ class GeneralClient
         $this->jmsSerializer = $jmsSerializer;
     }
 
-
     public function currency()
     {
         $request = new CurrencyRequest();
