@@ -8,7 +8,9 @@ use Payourself2\Bundle\MonobankBundle\Handler\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\ClientInfoRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\ClientStatementRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\WebHookRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Response\ClientInfo;
 use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
+use Payourself2\Bundle\MonobankBundle\Model\Response\Statement;
 
 class PersonalClient
 {
@@ -36,18 +38,24 @@ class PersonalClient
         return $this->generalClient->currency();
     }
 
-    public function clientInfo()
+    public function clientInfo(): ClientInfo
     {
         $request = new ClientInfoRequest($this->monobankApiPersonalKey);
 
-        return $this->requestHandler->handle($request,'');
+        return $this->requestHandler->handle($request,ClientInfo::class);
     }
 
+    /**
+     * @param string $accountId
+     * @param int $from
+     * @param int|null $to
+     * @return Statement[]
+     */
     public function clientStatement(
         string $accountId,
         int $from,
         ?int $to
-    ) {
+    ): array {
         $request = new ClientStatementRequest(
             $this->monobankApiPersonalKey,
             $accountId,
@@ -55,10 +63,10 @@ class PersonalClient
             $to
         );
 
-        return $this->requestHandler->handle($request,'');
+        return $this->requestHandler->handle($request,'<array'.Statement::class.'>');
     }
 
-    public function setWebHook(string $webHookUrl)
+    public function setWebHook(string $webHookUrl): bool
     {
         $request = new WebHookRequest(
             $this->monobankApiPersonalKey,

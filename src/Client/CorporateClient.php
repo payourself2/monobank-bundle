@@ -11,7 +11,10 @@ use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\AuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\CheckAuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientInfoRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientStatementRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Response\ClientInfo;
 use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
+use Payourself2\Bundle\MonobankBundle\Model\Response\Statement;
+use Payourself2\Bundle\MonobankBundle\Model\Response\Token;
 
 class CorporateClient
 {
@@ -39,11 +42,11 @@ class CorporateClient
         return $this->generalClient->currency();
     }
 
-    public function auth(string $permission, string $callbackUrl)
+    public function auth(string $permission, string $callbackUrl): Token
     {
         $request = new AuthRequest($this->signer, $permission, $callbackUrl);
 
-        return $this->requestHandler->handle($request, '');
+        return $this->requestHandler->handle($request, Token::class);
     }
 
     public function checkAuth(string $requestId): bool
@@ -59,19 +62,26 @@ class CorporateClient
         }
     }
 
-    public function clientInfo(string $requestId)
+    public function clientInfo(string $requestId): ClientInfo
     {
         $request = new ClientInfoRequest($this->signer, $requestId);
 
-        return $this->requestHandler->handle($request, '');
+        return $this->requestHandler->handle($request, ClientInfo::class);
     }
 
+    /**
+     * @param string $requestId
+     * @param string $accountId
+     * @param int $from
+     * @param int|null $to
+     * @return Statement[]
+     */
     public function clientStatement(
         string $requestId,
         string $accountId,
         int $from,
         ?int $to
-    ) {
+    ): array {
         $request = new ClientStatementRequest(
             $this->signer,
             $requestId,
@@ -80,6 +90,6 @@ class CorporateClient
             $to
         );
 
-        return $this->requestHandler->handle($request, '');
+        return $this->requestHandler->handle($request, '<array' . Statement::class . '>');
     }
 }
