@@ -27,7 +27,7 @@ class ClientInfo
     public string $webHookUrl;
 
     /**
-     * @Serializer\Type("Payourself2\Bundle\MonobankBundle\Model\Response\ClientAccount")
+     * @Serializer\Type("array<Payourself2\Bundle\MonobankBundle\Model\Response\ClientAccount>")
      */
     public array $accounts;
 }

@@ -50,17 +50,15 @@ Configuration
 ### Add parameters
 #### If you are going to use personal api:
 ```yaml
-parameters:
-    payourself2_monobank:
-        personal_key: '%env(PAYOURSELF2_MONOBANK_PERSONAL_KEY)%'
+monobank:
+    personal_key: '%env(PAYOURSELF2_MONOBANK_PERSONAL_KEY)%'
  ```
 
 #### If you are going to use corporate api:
 ```yaml
-parameters:
-    payourself2_monobank:
-        pub_key: '%env(PAYOURSELF2_MONOBANK_PUB_KEY)%'
-        priv_key: '%env(PAYOURSELF2_MONOBANK_PRIV_KEY)%'
+monobank:
+    pub_key: '%env(PAYOURSELF2_MONOBANK_PUB_KEY)%'
+    priv_key: '%env(PAYOURSELF2_MONOBANK_PRIV_KEY)%'
  ```
 
 redefine your payourself2_monobank.send_request_adapter 

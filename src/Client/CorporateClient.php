@@ -90,6 +90,6 @@ class CorporateClient
             $to
         );
 
-        return $this->requestHandler->handle($request, '<array' . Statement::class . '>');
+        return $this->requestHandler->handle($request, 'array<' . Statement::class . '>');
     }
 }

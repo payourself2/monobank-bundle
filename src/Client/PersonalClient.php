@@ -63,7 +63,7 @@ class PersonalClient
             $to
         );
 
-        return $this->requestHandler->handle($request,'<array'.Statement::class.'>');
+        return $this->requestHandler->handle($request,'array<'.Statement::class.'>');
     }
 
     public function setWebHook(string $webHookUrl): bool
