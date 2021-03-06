@@ -29,7 +29,7 @@ class MonobankExtension extends Extension
         $definition->replaceArgument(2, $config['personal_key']);
 
         $definition = $container->getDefinition(Sender::class);
-        $definition->replaceArgument(2, $config['api_base_path']);
+        $definition->replaceArgument(1, $config['api_base_path']);
 
         $definition = $container->getDefinition(Signer::class);
         $definition->replaceArgument(0, $config['pub_key']);

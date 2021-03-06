@@ -8,6 +8,7 @@ use Payourself2\Bundle\MonobankBundle\Handler\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\ClientInfoRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\ClientStatementRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Personal\WebHookRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
 
 class PersonalClient
 {
@@ -27,6 +28,9 @@ class PersonalClient
         $this->monobankApiPersonalKey = $monobankApiPersonalKey;
     }
 
+    /**
+     * @return CurrencyInfo[]
+     */
     public function currency(): array
     {
         return $this->generalClient->currency();

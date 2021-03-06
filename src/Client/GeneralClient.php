@@ -17,6 +17,9 @@ class GeneralClient
         $this->requestHandler = $requestHandler;
     }
 
+    /**
+     * @return CurrencyInfo[]
+     */
     public function currency(): array
     {
         $request = new CurrencyRequest();

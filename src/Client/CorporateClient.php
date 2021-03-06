@@ -11,6 +11,7 @@ use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\AuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\CheckAuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientInfoRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientStatementRequest;
+use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
 
 class CorporateClient
 {
@@ -30,6 +31,9 @@ class CorporateClient
         $this->generalClient = $generalClient;
     }
 
+    /**
+     * @return CurrencyInfo[]
+     */
     public function currency(): array
     {
         return $this->generalClient->currency();
