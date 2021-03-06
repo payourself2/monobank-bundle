@@ -4,54 +4,46 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Model\Response;
 
-use DateTime;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
- * @psalm-immutable
+ * @psalm-allow-private-mutation
  */
 class CurrencyInfo
 {
+    /**
+     * @Serializer\Type("int")
+     */
     public int $currencyCodeA;
 
+    /**
+     * @Serializer\Type("int")
+     */
     public int $currencyCodeB;
 
-    public Datetime $date;
-
-    public ?float $rateSell;
-
-    public ?float $rateBuy;
-
-    public ?float $rateCross;
-
-    public function __construct(
-        int $currencyCodeA,
-        int $currencyCodeB,
-        int $timestamp,
-        ?float $rateSell,
-        ?float $rateBuy,
-        ?float $rateCross
-    ) {
-        $this->currencyCodeA = $currencyCodeA;
-        $this->currencyCodeB = $currencyCodeB;
-        $this->date = new DateTime("@{$timestamp}");
-        $this->rateSell = $rateSell;
-        $this->rateBuy = $rateBuy;
-        $this->rateCross = $rateCross;
-    }
+    /**
+     * @Serializer\Type("int")
+     * @Serializer\Accessor(setter="setDate")
+     */
+    public \DateTimeImmutable $date;
 
     /**
-     * @param array<string, mixed> $item
-     * @return self
+     * @Serializer\Type("float")
      */
-    public static function create(array $item): self
+    public ?float $rateSell;
+
+    /**
+     * @Serializer\Type("float")
+     */
+    public ?float $rateBuy;
+
+    /**
+     * @Serializer\Type("float")
+     */
+    public ?float $rateCross;
+
+    public function setDate(int $timestamp): void
     {
-        return new CurrencyInfo(
-            $item['currencyCodeA'],
-            $item['currencyCodeB'],
-            $item['date'],
-            $item['rateSell'] ?? null,
-            $item['rateBuy'] ?? null,
-            $item['rateCross'] ?? null
-        );
+        $this->date = new \DateTimeImmutable("@{$timestamp}");
     }
 }

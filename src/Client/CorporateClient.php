@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
-use Payourself2\Bundle\MonobankBundle\Action\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Action\Signer;
 use Payourself2\Bundle\MonobankBundle\Exception\UnauthorizedException;
+use Payourself2\Bundle\MonobankBundle\Handler\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\AuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\CheckAuthRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientInfoRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Request\Corporate\ClientStatementRequest;
-use Payourself2\Bundle\MonobankBundle\Model\Request\General\CurrencyInfo;
 
 class CorporateClient
 {
@@ -31,7 +30,7 @@ class CorporateClient
         $this->generalClient = $generalClient;
     }
 
-    public function currency()
+    public function currency(): array
     {
         return $this->generalClient->currency();
     }

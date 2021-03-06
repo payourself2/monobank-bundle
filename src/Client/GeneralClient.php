@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Payourself2\Bundle\MonobankBundle\Client;
 
-use Payourself2\Bundle\MonobankBundle\Action\RequestHandler;
+use Payourself2\Bundle\MonobankBundle\Handler\RequestHandler;
 use Payourself2\Bundle\MonobankBundle\Model\Request\General\CurrencyRequest;
 use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
 

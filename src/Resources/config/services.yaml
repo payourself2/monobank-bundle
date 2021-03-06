@@ -37,18 +37,22 @@ services:
         public: false
         arguments:
             - '@payourself2_monobank.send_request_adapter'
-            - '@payourself2_monobank.action_status_code_checker'
             - '%payourself2_monobank.api_base_path%'
 
     payourself2_monobank.action_sender: '@Payourself2\Bundle\MonobankBundle\Action\Sender'
 
-    Payourself2\Bundle\MonobankBundle\Action\RequestHandler:
+    Payourself2\Bundle\MonobankBundle\Component\Serializer:
+        public: false
+    payourself2_monobank.component_serializer: '@Payourself2\Bundle\MonobankBundle\Component\Serializer'
+
+    Payourself2\Bundle\MonobankBundle\Handler\RequestHandler:
         public: false
         arguments:
             - '@payourself2_monobank.action_sender'
-            - '@jms_serializer'
+            - '@payourself2_monobank.action_status_code_checker'
+            - '@payourself2_monobank.component_serializer'
 
-    payourself2_monobank.action_request_handler: '@Payourself2\Bundle\MonobankBundle\Action\RequestHandler'
+    payourself2_monobank.action_request_handler: '@Payourself2\Bundle\MonobankBundle\Handler\RequestHandler'
 
     Payourself2\Bundle\MonobankBundle\Action\Signer:
         public: false
