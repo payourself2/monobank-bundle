@@ -43,6 +43,6 @@
     },
     "scripts": {
         "phpstan": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/phpunit --coverage-clover=build/clover.xml --coverage-xml=build/coverage-xml --log-junit=build/junit.xml"
+        "test": "vendor/bin/phpunit --coverage-clover=./build/clover.xml --coverage-xml=build/coverage-xml --log-junit=build/junit.xml"
     }
 }
