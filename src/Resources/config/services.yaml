@@ -24,12 +24,6 @@ services:
 
     payourself2_monobank.corporate_client: '@Payourself2\Bundle\MonobankBundle\Client\CorporateClient'
 
-
-    Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer:
-        public: false
-
-    payourself2_monobank.action_response_deserializer: '@Payourself2\Bundle\MonobankBundle\Action\ResponseDeserializer'
-
     payourself2_monobank.send_request_adapter:
         class: Payourself2\Bundle\MonobankBundle\Adapter\NullAdapter
 

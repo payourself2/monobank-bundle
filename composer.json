@@ -38,7 +38,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Payourself2\\Bundle\\MonobankBundle\\Tests\\": "tests/"
+            "Tests\\Payourself2\\Bundle\\MonobankBundle\\": "tests/"
         }
     },
     "scripts": {

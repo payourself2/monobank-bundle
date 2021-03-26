@@ -7,6 +7,7 @@ namespace Payourself2\Bundle\MonobankBundle\Handler;
 use JMS\Serializer\SerializerInterface;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
+use Payourself2\Bundle\MonobankBundle\Exception;
 use Payourself2\Bundle\MonobankBundle\Model\Response\ClientAccount;
 use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
 use Payourself2\Bundle\MonobankBundle\Model\Response\Statement;
@@ -30,18 +31,17 @@ class RequestHandler
         $this->statusCodeChecker = $statusCodeChecker;
         $this->serializer = $jmsSerializer;
     }
-
+    
     /**
-     * @param $request
+     * @param RequestInterface $request
      * @psalm-param class-string<Token>|class-string<Statement>|class-string<CurrencyInfo>|class-string<ClientAccount>|null $type
-     * @return Token|Statement|CurrencyInfo|ClientAccount|null
-     *
-     * @throws \Payourself2\Bundle\MonobankBundle\Exception\BadRequestException
-     * @throws \Payourself2\Bundle\MonobankBundle\Exception\ForbiddenException
-     * @throws \Payourself2\Bundle\MonobankBundle\Exception\NotFoundException
-     * @throws \Payourself2\Bundle\MonobankBundle\Exception\TooManyRequestsException
-     * @throws \Payourself2\Bundle\MonobankBundle\Exception\UnauthorizedException
-     * @throws \Payourself2\Bundle\MonobankBundle\Exception\UnknownException
+     * @return Token|Statement|array<int,CurrencyInfo>|ClientAccount|null
+     * @throws Exception\BadRequestException
+     * @throws Exception\ForbiddenException
+     * @throws Exception\NotFoundException
+     * @throws Exception\TooManyRequestsException
+     * @throws Exception\UnauthorizedException
+     * @throws Exception\UnknownException
      */
     public function handle(RequestInterface $request, ?string $type)
     {

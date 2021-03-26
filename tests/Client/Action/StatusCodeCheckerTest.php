@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Client\Action;
+namespace Tests\Payourself2\Bundle\MonobankBundle\Client\Action;
 
 use Generator;
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
@@ -11,8 +11,14 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
+/**
+ * @group UnitTest
+ */
 class StatusCodeCheckerTest extends TestCase
 {
+    /**
+     * @return Generator<int,array<int,int|class-string>>
+     */
     public function throwExceptionsProvider(): Generator
     {
         yield 429 => [429, Exception\TooManyRequestsException::class];
@@ -29,10 +35,11 @@ class StatusCodeCheckerTest extends TestCase
      * @param int $code
      * @param class-string<Throwable> $exceptionClass
      *
-     * @throws Exception\TooManyRequestsException
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
      * @throws Exception\NotFoundException
+     * @throws Exception\TooManyRequestsException
+     * @throws Exception\UnauthorizedException
      * @throws Exception\UnknownException
      */
     public function testThrowExceptions(int $code, string $exceptionClass): void
