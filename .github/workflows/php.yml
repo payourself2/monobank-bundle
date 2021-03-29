@@ -32,18 +32,11 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
-
-    - uses: actions/download-artifact@v2
-      with:
-        path: ./build
-
-    - name: Display structure of downloaded files
-      run: ls -R
     
     - name: Publish coverage
       uses: codecov/codecov-action@v1
       with:
-          file: /clover.xml
+          file: ./build/clover.xml
     
     - name: Run psalm
       uses: docker://vimeo/psalm-github-actions
