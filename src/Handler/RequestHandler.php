@@ -31,11 +31,11 @@ class RequestHandler
         $this->statusCodeChecker = $statusCodeChecker;
         $this->serializer = $jmsSerializer;
     }
-    
+
     /**
      * @param RequestInterface $request
      * @psalm-param class-string<Token>|class-string<Statement>|class-string<CurrencyInfo>|class-string<ClientAccount>|null $type
-     * @return Token|Statement|array<int,CurrencyInfo>|ClientAccount|null
+     * @return mixed|Token|Statement|array<int,CurrencyInfo>|ClientAccount|null
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
      * @throws Exception\NotFoundException
