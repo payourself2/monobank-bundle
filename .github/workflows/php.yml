@@ -38,10 +38,7 @@ jobs:
       with:
           file: ./build/clover.xml
     
-    - name: Run psalm
-      uses: docker://vimeo/psalm-github-actions
-      with:
-        args: --shepherd
+
 
     - name: Run phpstan
       run: composer run-script phpstan
