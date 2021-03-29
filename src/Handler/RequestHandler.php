@@ -9,6 +9,7 @@ use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
 use Payourself2\Bundle\MonobankBundle\Exception;
 use Payourself2\Bundle\MonobankBundle\Model\Response\ClientAccount;
+use Payourself2\Bundle\MonobankBundle\Model\Response\ClientInfo;
 use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
 use Payourself2\Bundle\MonobankBundle\Model\Response\Statement;
 use Payourself2\Bundle\MonobankBundle\Model\Response\Token;
@@ -34,7 +35,7 @@ class RequestHandler
 
     /**
      * @param RequestInterface $request
-     * @psalm-param class-string<Token>|class-string<Statement>|class-string<CurrencyInfo>|class-string<ClientAccount>|null $type
+     * @param mixed $type
      * @return mixed
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
