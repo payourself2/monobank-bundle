@@ -34,8 +34,8 @@ class RequestHandler
 
     /**
      * @param RequestInterface $request
-     * @psalm-param class-string<Token>|class-string<Statement>|class-string<CurrencyInfo>|class-string<ClientAccount>|null $type
-     * @return mixed|Token|Statement|array<int,CurrencyInfo>|ClientAccount|null
+     * @param class-string<Token>|class-string<Statement>|class-string<CurrencyInfo>|class-string<ClientAccount>|null $type
+     * @return mixed
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
      * @throws Exception\NotFoundException
