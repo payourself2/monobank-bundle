@@ -32,16 +32,17 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
-    
-    - name: Publish coverage
-      uses: codecov/codecov-action@v1
-      with:
-          file: ./build/clover.xml
-    
+
+    - name: Run phpstan
+      run: composer run-script phpstan
+
     - name: Run psalm
       uses: docker://vimeo/psalm-github-actions
       with:
         args: --shepherd
 
-    - name: Run phpstan
-      run: composer run-script phpstan
+    - name: Publish coverage
+      uses: codecov/codecov-action@v1
+      with:
+          file: ./build/clover.xml
+
