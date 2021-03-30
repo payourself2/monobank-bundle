@@ -8,11 +8,6 @@ use JMS\Serializer\SerializerInterface;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
 use Payourself2\Bundle\MonobankBundle\Exception;
-use Payourself2\Bundle\MonobankBundle\Model\Response\ClientAccount;
-use Payourself2\Bundle\MonobankBundle\Model\Response\ClientInfo;
-use Payourself2\Bundle\MonobankBundle\Model\Response\CurrencyInfo;
-use Payourself2\Bundle\MonobankBundle\Model\Response\Statement;
-use Payourself2\Bundle\MonobankBundle\Model\Response\Token;
 use Psr\Http\Message\RequestInterface;
 
 class RequestHandler
@@ -34,9 +29,12 @@ class RequestHandler
     }
 
     /**
+     * @psalm-template T
+     *
      * @param RequestInterface $request
-     * @param mixed $type
-     * @return mixed
+     * @psalm class-string<T>|string|null $type
+     * @psalm-return T
+     *
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
      * @throws Exception\NotFoundException
@@ -49,7 +47,7 @@ class RequestHandler
         $response = $this->sender->send($request);
 
         $this->statusCodeChecker->check($response);
-
+        /** @phpstan-ignore-next-line */
         return $type === null ? null : $this->serializer->deserialize(
             $response->getBody()->getContents(),
             $type,

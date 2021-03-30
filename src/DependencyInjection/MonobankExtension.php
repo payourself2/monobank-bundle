@@ -13,7 +13,9 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class MonobankExtension extends Extension
 {
     /**
-     * {@inheritDoc}
+     * @param array<mixed,mixed> $configs
+     * @param ContainerBuilder $container
+     * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
