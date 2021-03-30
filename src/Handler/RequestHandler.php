@@ -33,6 +33,8 @@ class RequestHandler
      * @psalm-suppress ArgumentTypeCoercion
      * @psalm-suppress MissingReturnType
      *
+     * return mixed
+     *
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
      * @throws Exception\NotFoundException
