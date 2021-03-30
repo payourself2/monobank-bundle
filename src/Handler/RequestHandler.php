@@ -30,10 +30,13 @@ class RequestHandler
 
 
     /**
+     * @psalm-suppress InvalidArgument
      * @psalm-suppress ArgumentTypeCoercion
-     * @psalm-suppress MissingReturnType
+     * @psalm-suppress InvalidReturnStatement
      *
-     * return mixed
+     * @psalm-template T
+     * @psalm-param class-string<T>|string|null $type
+     * @psalm-return mixed
      *
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
