@@ -42,7 +42,7 @@
         }
     },
     "scripts": {
-        "phpstan": "phpstan analyse",
+        "phpstan": "vendor/bin/phpstan analyse",
         "test": [
             "@putenv XDEBUG_MODE=coverage",
             "vendor/bin/phpunit --coverage-clover=./build/clover.xml --coverage-xml=build/coverage-xml --log-junit=build/junit.xml"
