@@ -31,7 +31,7 @@ class RequestHandler
 
     /**
      * @psalm-suppress ArgumentTypeCoercion
-     * return mixed
+     * @psalm-suppress MissingReturnType
      *
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
