@@ -30,12 +30,10 @@ class RequestHandler
 
 
     /**
-     * @psalm-template T
-     * @psalm-param class-string<T> $type
-     * @psalm-return T
+     * @psalm-suppress InvalidArgument
      *
      * @param RequestInterface $request
-     * @param string|null $type
+     * @param mixed $type
      * @return mixed
      *
      * @throws Exception\BadRequestException
