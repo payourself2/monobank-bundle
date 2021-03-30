@@ -30,11 +30,7 @@ class RequestHandler
 
 
     /**
-     * @psalm-suppress InvalidArgument
-     *
-     * @param RequestInterface $request
-     * @param mixed $type
-     * @return mixed
+     * @psalm-suppress ArgumentTypeCoercion
      *
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
