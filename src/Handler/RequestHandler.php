@@ -28,9 +28,14 @@ class RequestHandler
         $this->serializer = $jmsSerializer;
     }
 
+
     /**
+     * @psalm-template T
+     * @psalm-param class-string<T> $type
+     * @psalm-return T
+     *
      * @param RequestInterface $request
-     * @param mixed $type
+     * @param string|null $type
      * @return mixed
      *
      * @throws Exception\BadRequestException
