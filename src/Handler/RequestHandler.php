@@ -32,8 +32,8 @@ class RequestHandler
      * @psalm-template T
      *
      * @param RequestInterface $request
-     * @psalm class-string<T>|string|null $type
-     * @psalm-return T
+     * @psalm-param class-string<T>|string|null $type
+     * @psalm-return null|T
      *
      * @throws Exception\BadRequestException
      * @throws Exception\ForbiddenException
