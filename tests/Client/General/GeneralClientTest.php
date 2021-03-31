@@ -26,7 +26,7 @@ class GeneralClientTest extends TestCase
 
     public function testHasData(): void
     {
-        $adapter = new Adapter(PAYOURSELF2_FIXTURES_PATH.'/currency.json');
+        $adapter = new Adapter(PAYOURSELF2_FIXTURES_PATH . '/currency.json');
         $requestHandler = (new RequestHandlerMock($adapter))->createMock();
         $generalClient = new GeneralClient($requestHandler);
         $result = $generalClient->currency();

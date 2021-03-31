@@ -28,7 +28,6 @@ class RequestHandler
         $this->serializer = $jmsSerializer;
     }
 
-
     /**
      * @psalm-suppress InvalidArgument
      * @psalm-suppress ArgumentTypeCoercion
@@ -50,6 +49,7 @@ class RequestHandler
         $response = $this->sender->send($request);
 
         $this->statusCodeChecker->check($response);
+
         /** @phpstan-ignore-next-line */
         return $type === null ? null : $this->serializer->deserialize(
             $response->getBody()->getContents(),
