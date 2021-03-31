@@ -12,7 +12,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Adapter implements SendRequestAdapterInterface
 {
-    private ?string $path;
+    private string $path;
 
     /** @var callable|null */
     private $validateRequestCallback;
@@ -22,13 +22,14 @@ class Adapter implements SendRequestAdapterInterface
 
     public function __construct(string $path = null, ?callable $validateRequestCallback = null)
     {
-        $this->path = $path;
+        $this->path = $path ?? PAYOURSELF2_FIXTURES_PATH . '/emptyResponse.json';
+
         $this->validateRequestCallback = $validateRequestCallback;
     }
 
     public function send(RequestInterface $request): ResponseInterface
     {
-        $this->resource = $this->path === null ? null : fopen($this->path, 'rb');
+        $this->resource = fopen($this->path, 'rb');
 
         if ($this->validateRequestCallback !== null) {
             Closure::fromCallable($this->validateRequestCallback)($request);
