@@ -30,6 +30,9 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Show installed packages
+      run: composer show -i
+
     - name: Run test suite
       run: composer run-script test
 
