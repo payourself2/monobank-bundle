@@ -3,3 +3,7 @@ parameters:
 	paths:
 		- src
 		- tests
+	ignoreErrors:
+		-
+			message: '#Constant PAYOURSELF2_FIXTURES_PATH not found#'
+			path: tests/*
