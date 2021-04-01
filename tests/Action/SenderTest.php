@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Payourself2\Bundle\MonobankBundle\Client\Action;
+namespace Tests\Payourself2\Bundle\MonobankBundle\Action;
 
 use Nyholm\Psr7\Request;
 use Payourself2\Bundle\MonobankBundle\Action\Sender;
@@ -11,9 +11,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Tests\Payourself2\Bundle\MonobankBundle\Mocks\Adapter;
 
-/**
- * @group UnitTest
- */
 class SenderTest extends TestCase
 {
     public function testNoUrl(): void

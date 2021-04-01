@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Payourself2\Bundle\MonobankBundle\Client\Action;
+namespace Tests\Payourself2\Bundle\MonobankBundle\Action;
 
 use Generator;
 use Payourself2\Bundle\MonobankBundle\Action\StatusCodeChecker;
@@ -11,9 +11,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
-/**
- * @group UnitTest
- */
 class StatusCodeCheckerTest extends TestCase
 {
     /**
